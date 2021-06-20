@@ -6,6 +6,8 @@ function love.load()
     Player:load()
     Ball:load()
     AI:load()
+
+    Score = {player=0, ai=0}
 end
 
 function love.update(dt)
@@ -18,6 +20,8 @@ function love.draw()
     Player:draw()
     Ball:draw()
     AI:draw(0)
+    love.graphics.print("Player: "..Score.player, 50, 50)
+    love.graphics.print("Opponent: "..Score.ai, 1000, 50)
 end
 
 
