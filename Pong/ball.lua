@@ -40,6 +40,7 @@ function Ball:collidePlayer()
         local middlePlayer = Player.y + Player.height / 2
         local collisionPosition = middleBall - middlePlayer
         self.yVel = collisionPosition * 5
+        self.speed = self.speed + 100
     end
 end
 
@@ -52,6 +53,7 @@ function Ball:collideAI()
         local middleAI = AI.y + AI.height / 2
         local collisionPosition = middleBall - middleAI
         self.yVel = collisionPosition * 5
+        self.speed = self.speed + 100
     end
 end
 
@@ -59,14 +61,18 @@ end
 
 function Ball:score()
     if self.x < 0 then 
+       self.speed = 200
        self:resetPosition(1)
        Score.ai = Score.ai + 1
     end 
 
     if self.x + self.width > love.graphics.getWidth() then 
+        self.speed = 200
         self:resetPosition(-1)
         Score.player = Score.player + 1
+
     end 
+
 end
 
 
