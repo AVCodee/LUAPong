@@ -1,5 +1,6 @@
 AI = {}
 
+--Comments: Potentially Draw Circle on Board and use Line of vision for detetcting object. 
 function AI:load()
     self.width = 20
     self.height = 100
