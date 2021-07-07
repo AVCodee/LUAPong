@@ -35,6 +35,7 @@ function AI:acquireTarget()
     else 
         self.yVel = 0
     end 
+    
 end
 
 function AI:checkBoundaries()

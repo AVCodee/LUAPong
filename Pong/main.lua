@@ -1,23 +1,31 @@
 require("player")
 require("ball")
 require("ai")
+require("pickup")
+require("Ball2")
 
 function love.load()
     Player:load()
     Ball:load()
     AI:load()
+    
 
     Score = {player=0, ai=0}
     font = love.graphics.newFont(30)
     endgame = false
+    if Score.player == 2 then
+        pickup.new(love.graphics.getWidth() / 2, love.graphics.getHeight() / 2)
+    end
 
 end
 
 function love.update(dt)
     Player:update(dt)
     Ball:update(dt)
+
     AI:update(dt)
     checkWinner(dt)
+    spawnCollectible(dt)
 
     
 end
@@ -30,6 +38,9 @@ function love.draw()
         Player:draw()
         Ball:draw()
         AI:draw(0)
+        if endgame == true then
+            pickup:draw()
+        end
         drawScore()
     end
 end
@@ -63,6 +74,12 @@ function drawWinner() --Add a control situation if both scores < 5 then raise er
     endgame = true
 end
 
+function spawnCollectible()
+    if Score.player >= 2 then
+        pickup.new(love.graphics.getWidth() / 2, love.graphics.getHeight() / 2)
+    end
+end
+
 
 
 function checkCollision(a, b) -- Add Unit Test Cases for proper testing
@@ -73,3 +90,5 @@ function checkCollision(a, b) -- Add Unit Test Cases for proper testing
     end 
 
 end
+
+
