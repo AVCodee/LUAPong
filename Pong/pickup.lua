@@ -53,9 +53,10 @@ end
 
 
 function pickup:draw()
+    --[[
     for i, instance in ipairs(ActivePickups) do
         love.graphics.rectangle("fill", instance.x, instance.y, instance.width, instance.height)
-    end
+    end ]]
 end
 
 function pickup.updateAll(dt)
