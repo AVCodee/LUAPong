@@ -3,22 +3,14 @@ require("ball")
 require("ai")
 require("pickup")
 require("Ball2")
+
+--Menu Vars
 local game_state = 'menu'
 local menus = { 'Play', 'How To Play', 'Quit' }
 local selected_menu_item = 1
 local window_width
 local window_height
 local font_height
-
--- Menu Functions
-local draw_menu
-local menu_keypressed
-local draw_how_to_play
-local how_to_play_keypressed
-local draw_game
-local game_keypressed
-
-
 
 
 
@@ -69,12 +61,6 @@ function draw_menu()
     local vertical_center = window_height / 2
     local start_y = vertical_center - (font_height * (#menus / 2))
   
-    -- draw guides to help check if menu items are centered, can remove later
-    -- love.graphics.setColor(1, 1, 1, 0.1)
-    -- love.graphics.line(horizontal_center, 0, horizontal_center, window_height)
-    -- love.graphics.line(0, vertical_center, window_width, vertical_center)
-  
-    -- draw game title
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.printf("LUAPONG by AVelazquez", 0, 150, window_width, 'center')
   
@@ -100,13 +86,11 @@ function draw_menu()
   function draw_how_to_play()
   
     love.graphics.printf(
-      "this is the 'how-to-play' state, press Esc to go back to the 'menu' state",
+      "Welcome to LUA Pong, a Simple LOVE2D Project for CSC313 by Alvyn Velazquez",
       0,
       window_height / 2 - font_height / 2,
       window_width,
       'center')
-  
-    -- TODO: implement this function
   
   end
   

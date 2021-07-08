@@ -35,7 +35,7 @@ function AI:acquireTarget()
     else 
         self.yVel = 0
     end 
-    
+
 end
 
 function AI:checkBoundaries()
@@ -48,6 +48,7 @@ end
 
 
 function AI:draw()
+    love.graphics.setColor(0, 255, 0)
     love.graphics.rectangle("fill", self.x, self.y, self.width, self.height)
 
 
