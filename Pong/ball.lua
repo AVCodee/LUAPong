@@ -58,8 +58,8 @@ function Ball:collideAI()
     end
 end
 
-function Ball:collidePickup()
-    if (i,instance in ipairs(ActivePickups)) then
+--[[function Ball:collidePickup()
+    for i,instance in ipairs(ActivePickups) do
         if checkCollision(self, instance) then
             self.xVel = -self.speed
             local middleBall = self.y + self.height / 2
@@ -69,7 +69,7 @@ function Ball:collidePickup()
             self.speed = self.speed + 100
         end
     end
-end
+end]]
 
 function Ball:score()
     if self.x < 0 then 
