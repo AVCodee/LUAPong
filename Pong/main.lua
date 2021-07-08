@@ -10,19 +10,18 @@ function love.load()
     AI:load()
     
 
-    Score = {player=0, ai=0}
+    Score = {player=2, ai=0}
     font = love.graphics.newFont(30)
     endgame = false
-    if Score.player == 2 then
-        pickup.new(love.graphics.getWidth() / 2, love.graphics.getHeight() / 2)
-    end
+    pickup.new(love.graphics.getWidth() / 2, love.graphics.getHeight() / 2)
+    
 
 end
 
 function love.update(dt)
     Player:update(dt)
     Ball:update(dt)
-
+    pickup:update(dt)
     AI:update(dt)
     checkWinner(dt)
     spawnCollectible(dt)
@@ -38,6 +37,7 @@ function love.draw()
         Player:draw()
         Ball:draw()
         AI:draw(0)
+        pickup:draw()
         if endgame == true then
             pickup:draw()
         end
@@ -62,7 +62,6 @@ function checkWinner()
     end
 
 end
-
 
 function drawWinner() --Add a control situation if both scores < 5 then raise error condition. Remove endgame = true
     love.graphics.setFont(font)
