@@ -19,6 +19,7 @@ function Ball:collide()
     self:collideWall()
     self:collidePlayer()
     self:collideAI()
+    self:collidePickup()
     self:score()
 end
 
@@ -57,7 +58,18 @@ function Ball:collideAI()
     end
 end
 
-
+function Ball:collidePickup()
+    if (i,instance in ipairs(ActivePickups)) then
+        if checkCollision(self, instance) then
+            self.xVel = -self.speed
+            local middleBall = self.y + self.height / 2
+            local middlepickup = instance.y + instance.height / 2
+            local collisionPosition = middleBall - middlepickup
+            self.yVel = collisionPosition * 5
+            self.speed = self.speed + 100
+        end
+    end
+end
 
 function Ball:score()
     if self.x < 0 then 

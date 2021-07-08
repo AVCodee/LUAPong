@@ -13,7 +13,7 @@ function love.load()
     Score = {player=2, ai=0}
     font = love.graphics.newFont(30)
     endgame = false
-    pickup.new(love.graphics.getWidth() / 2, love.graphics.getHeight() / 2)
+    --pickup.new(love.graphics.getWidth() / 2, love.graphics.getHeight() / 2)
     
 
 end
@@ -24,7 +24,7 @@ function love.update(dt)
     pickup:update(dt)
     AI:update(dt)
     checkWinner(dt)
-    spawnCollectible(dt)
+    spawnCollectible()
 
     
 end
@@ -75,7 +75,7 @@ end
 
 function spawnCollectible()
     if Score.player >= 2 then
-        pickup.new(love.graphics.getWidth() / 2, love.graphics.getHeight() / 2)
+        pickup.new(love.graphics.getWidth() / 3, love.graphics.getHeight() / 3)
     end
 end
 

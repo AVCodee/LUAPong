@@ -1,19 +1,16 @@
 luaunit = require('luaunit')
 
+function checkCollision() -- Add Unit Test Cases for proper testing
+    local aX = 500
+    local aY = 500
+    local aWidth = 300
+    local aHeight = 300
 
-
-
-function checkCollision(a, b) -- Add Unit Test Cases for proper testing
-    a.x = 500
-    a.y = 500
-    a.width = 300
-    a.height = 300
-
-    b.x = 200
-    b.y = 200
-    b.width = 400
-    b.height = 400
-    if a.x + a.width > b.x and a.x < b.x + b.width and a.y + a.height > b.y and a.y < b.y + b.height then
+    local bX = 200
+    local bY = 200
+    local bWidth = 400
+    local bHeight = 400
+    if aX + aWidth > bX and aX < bX + bWidth and aY + aHeight > bY and aY < bY + bHeight then
         return true
     else 
         return false
@@ -22,13 +19,12 @@ function checkCollision(a, b) -- Add Unit Test Cases for proper testing
 end
 
 
-function testCollision(a, b)
-   
-    luaunit.assertEquals(checkCollision(a, b), true)
+function testCollision()
+    luaunit.assertEquals(checkCollision(), true)
 end
 
-function testNoCollision(a, b)
-    luaunit.assertEquals(checkCollision(a, b), false)
+function testNoCollision()
+    luaunit.assertEquals(checkCollision(), false)
 end
 
 os.exit( luaunit.LuaUnit.run() )

@@ -9,6 +9,10 @@ function pickup.new(x,y)
     instance.y = y
     instance.width = 80
     instance.height = 80
+    instance.scaleX = 1
+    instance.speed = 100
+    instance.xVel = -instance.speed
+    instance.yVel = 0
     table.insert(ActivePickups, instance)
 end 
 
@@ -20,24 +24,38 @@ function pickup:remove()
     end
 end
 
-function pickup:update(dt)
-    self:move(dt)
-   -- self:collect()
+function pickup:collect()
+    for i, instance in ipairs(ActivePickups) do
+        if instance == self then
+            if checkCollision(instance, Player) then
+                Ball.speed = Ball.speed*2
+                pickup:remove()
+            end
+        end
+    end
 end
 
---function pickup:collect()
-  --  for i, instance in ipairs(ActivePickups) do
-    --    if checkCollision(self, Player) then
-      --      Ball.speed = Ball.speed*2
-            --pickup:remove()
-       -- end
-   -- end
---end
+
+function pickup:move(dt)
+    for i, instance in ipairs(ActivePickups) do
+        instance.x = instance.x + instance.xVel * dt
+        instance.y = instance.y + instance.yVel * dt
+    end
+end
+
+function pickup:update(dt)
+    
+    self:collect()
+  
+end
+
+
 
 
 function pickup:draw()
-    love.graphics.rectangle("fill", instance.x, instance.y, instance.width, instance.height)
-
+    for i, instance in ipairs(ActivePickups) do
+        love.graphics.rectangle("fill", instance.x, instance.y, instance.width, instance.height)
+    end
 end
 
 function pickup.updateAll(dt)
@@ -46,10 +64,7 @@ function pickup.updateAll(dt)
     end
 end
 
-function pickup:move(dt)
-    self.x = self.x + self.xVel * dt
-    self.y = self.y + self.yVel * dt
-end
+
 
 function pickup.drawAll()
     for i,instance in ipairs(ActivePickups) do --Will loop until Nil
