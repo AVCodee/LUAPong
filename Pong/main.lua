@@ -63,20 +63,16 @@ function draw_menu()
   
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.printf("LUAPONG by AVelazquez", 0, 150, window_width, 'center')
-  
-    -- draw menu items
+
     for i = 1, #menus do
   
-      -- currently selected menu item is yellow
       if i == selected_menu_item then
         love.graphics.setColor(1, 1, 0, 1)
-  
-      -- other menu items are white
+
       else
         love.graphics.setColor(1, 1, 1, 1)
       end
   
-      -- draw this menu item centered
       love.graphics.printf(menus[i], 0, start_y + font_height * (i-1), window_width, 'center')
   
     end
@@ -102,10 +98,6 @@ function draw_menu()
           Player:draw()
           Ball:draw()
           AI:draw(0)
-          pickup:draw()
-          if endgame == true then
-              pickup:draw()
-          end
           drawScore()
       end
   end
@@ -127,11 +119,11 @@ function draw_menu()
   
   function menu_keypressed(key)
   
-    -- pressing Esc on the main menu quits the game
+   
     if key == 'escape' then
       love.event.quit()
   
-    -- pressing up selects the previous menu item, wrapping to the bottom if necessary
+  
     elseif key == 'up' then
   
       selected_menu_item = selected_menu_item - 1
@@ -140,7 +132,7 @@ function draw_menu()
         selected_menu_item = #menus
       end
   
-    -- pressing down selects the next menu item, wrapping to the top if necessary
+ 
     elseif key == 'down' then
   
       selected_menu_item = selected_menu_item + 1
@@ -149,7 +141,7 @@ function draw_menu()
         selected_menu_item = 1
       end
   
-    -- pressing enter changes the game state (or quits the game)
+
     elseif key == 'return' or key == 'kpenter' then
   
       if menus[selected_menu_item] == 'Play' then
